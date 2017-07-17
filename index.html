@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.3/gitgraph.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Git Viz</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Git Viz</h1>
+
+    <canvas id="gitGraph"></canvas>
+    
+    <hr>
+    
+    <input type="text" placeholder="Branch Name" id="branch-name"></input>
+    <button id="add-branch">Add Branch</button>
+    <br>
+    <input type="text" placeholder="Commit Message" id="commit-message"></input>
+    <button id="add-commit">Add Commit</button>  
+    <br> 
+    <input type="text" placeholder="Target Branch" id="target-branch"></input>
+    <button id="merge-branches">Merge</button>  
+    
+    <hr>
+    <div>
+      <h2>Branches</h2>
+      <p>You are currently on branch: <span id="current-branch" style="font-family: 'Courier New';">null</span>.
+      <p>Click to switch to selected branch.</p>
+
+      <ul class="list-group" id="branch-list">
+        <li class="no-branches list-group-item">Looks like you have no branches yet.</li>
+      </ul>
+
+    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.3/gitgraph.js"></script>
+      <script src="helpers.js"></script>
+      <script src="app.js"></script>
+  
+  </div>
+</body>
+</html>
