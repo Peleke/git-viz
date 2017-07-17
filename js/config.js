@@ -1,4 +1,4 @@
-const config = {
+const state = {
   currentBranch: null,
 
   update (property) {
@@ -9,7 +9,7 @@ const config = {
       
       switch (property) {
         case 'currentBranch':
-          updateBranch(getBranch(g)(value))
+          updateBranch(value)
           break
         default:
           break

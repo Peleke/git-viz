@@ -6,27 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.3/gitgraph.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/main.css">
   <title>Git Viz</title>
-  <style>
-    #gitGraph {
-      border: 1px solid #ccc;
-      width: 40%;
-    }
-
-    .top-select {
-      font-size: 0.8em;
-      font-family: 'Courier New';
-    }
-
-    .code {
-      font-family: 'Courier New';
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <h1>On Branch <span class="code current-branch">null</span> ::
-      <select class="top-select" id="branch-select">
+      <select class="top-select" id="top-branch-select" class="branch-select">
         <option value="">Change Branch</option>
       </select>
     </h1>
@@ -56,7 +42,7 @@
               <input type="text" placeholder="Branch Name" name="branch-name" id="branch-name" class="form-control"></input>
             </div>
             
-            <button id="add-branch" class="btn btn-primary">Add Branch</button>
+            <button id="add-branch" class="btn btn-primary ">Add Branch</button>
           </form>
         </div>
       </div>
@@ -93,6 +79,40 @@
       </div>
     </div>
 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          Merge Branches
+          <button class="pull-right">
+            <a href="#merge-branches-collapse" data-toggle="collapse">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+          </button>
+        </h3>
+      </div>
+      <div id="merge-branches-collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p><b>N.b.</b>: This will merge <span class="code">source</span> _into_ <span class="code">target</span>&mdash;i.e., you will integrate changes into, <span class="code">target</span>, and <span class="code">target</span> will be the working branch after merge.
+
+          <hr>
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="merge-source-branch">Source</label>
+              <select id="merge-source-branch" class="branch-select"><option>[source]</option></select>
+            </div>
+
+            <div class="form-group">
+              <label for="merge-source-branch">Target</label>
+              <select id="merge-target-branch" class="branch-select"><option>[target]</option></select>
+            </div>
+
+            <button class="btn btn-primary btn-sm" id="merge-branches">Merge</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <hr>
     
     <footer style="text-align: center;" class="well">
@@ -106,8 +126,8 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="config.js"></script>
-  <script src="helpers.js"></script>
-  <script src="app.js"></script>
+  <script src="./js/config.js"></script>
+  <script src="./js/helpers.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>

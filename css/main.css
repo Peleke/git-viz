@@ -1,0 +1,17 @@
+    select {
+      font-family: 'Courier New';
+    }
+
+    #gitGraph {
+      border: 1px solid #ccc;
+      width: 40%;
+    }
+
+    .top-select {
+      font-size: 0.8em;
+      font-family: 'Courier New';
+    }
+
+    .code {
+      font-family: 'Courier New';
+    }
