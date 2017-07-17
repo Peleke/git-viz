@@ -11,14 +11,19 @@ const update = config => (updateEnvironment = () => null) => prop => val => {
   updateEnvironment()
 }
 
+const valueFrom = selector => document.querySelector(selector).value
+
 const updateBranch = update(config)(() => {
   const spans = document.querySelectorAll('.current-branch')
-  spans.forEach(span => span.textContent = config.currentBranch.name)
+
+  if (config.currentBranch) {
+    spans.forEach(span => span.textContent = config.currentBranch.name)
+  }
 })('currentBranch')
 
 const createBranchListItem = branchName => {
-  const child = document.createElement('li')
-  child.className = 'list-group-item'
+  const child = document.createElement('option')
+  child.value = branchName
   child.textContent = branchName
   child.setAttribute('data-branch-name', branchName)
 
@@ -53,6 +58,6 @@ const addBranch = (branchName) => {
   } else {
     const branch = g.branch(branchName)
     updateBranch(branch)
-    appendToBranchList('#branch-list')(createBranchListItem(branchName))
+    appendToBranchList('#branch-select')(createBranchListItem(branchName))
   }
 }

@@ -4,8 +4,18 @@ const g = new GitGraph({
   mode: "compact"
 })
 
-// Listeners
-document.querySelector('body').addEventListener('click', event => event.preventDefault())
+/** 
+ * Listeners
+ **/
+
+// Globally disable form submissions...Laziness.
+document.querySelector('body').addEventListener('click', e => e.preventDefault())
+
+// Change current branch via select
+document.querySelector('#branch-select').addEventListener('click', e => {
+  const {options, selectedIndex} = e.target
+  config.update('currentBranch')(options[selectedIndex].value)
+})
 
 document.querySelector('#add-branch').addEventListener('click', function (event) {
   const branchName = document.querySelector('#branch-name').value
@@ -13,8 +23,9 @@ document.querySelector('#add-branch').addEventListener('click', function (event)
 })
 
 document.querySelector('#add-commit').addEventListener('click', (event) => {
-  const message = document.querySelector('#commit-message').value                               
-  g.commit(message)
+  const author = valueFrom('#commit-author')
+  const message = valueFrom('#commit-message')
+  g.commit({ author, message })
 })
 
 // document.querySelector('#merge-branches').addEventListener('click', event => {
