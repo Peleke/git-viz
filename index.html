@@ -54,22 +54,32 @@
     
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Add Commit</h3>
+        <h3>
+          Add Commit
+
+          <button class="pull-right">
+            <a href="#add-commit-collapse" data-toggle="collapse">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+          </button>
+        </h3>
       </div>
-      <div class="panel-body">
-        <form action="">
-          <div class="form-group">
-            <label for="commit-author">Author</label>
-            <input type="text" id="author-name" name="author-name" class="form-control" placeholder="Linus Torvalds"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="commit-message">Commit Message</label>
-            <textarea rows="4" placeholder=":sparkles: Finally working!" id="commit-message" name="commit-message" class="form-control"></textarea>
-          </div>
-        </form>
-
-        <button id="add-commit" class="btn btn-primary">Add Commit</button>  
+      <div id="add-commit-collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form>
+            <div class="form-group">
+              <label for="commit-author">Author</label>
+              <input type="text" id="author-name" name="author-name" class="form-control" placeholder="Linus Torvalds"></input>
+            </div>
+  
+            <div class="form-group">
+              <label for="commit-message">Commit Message</label>
+              <textarea rows="4" placeholder=":sparkles: Finally working!" id="commit-message" name="commit-message" class="form-control"></textarea>
+            </div>
+          </form>
+  
+          <button id="add-commit" class="btn btn-primary">Add Commit</button>  
+        </div>
       </div>
     </div>
 
