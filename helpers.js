@@ -5,11 +5,16 @@ const has = graph => branchName =>
 const getBranch = graph => branchName =>
   graph.branches
     .filter(branch => branch.name === branchName)[0]
+    
+const update = config => (updateEnvironment = () => null) => prop => val => {
+  config[prop] = val
+  updateEnvironment()
+}
 
-const setCurrent = config => branch => {
-  config.currentBranch = branch
-  document.querySelector('#current-branch').textContent = branch.name
-} 
+const updateBranch = update(config)(() => {
+  const spans = document.querySelectorAll('.current-branch')
+  spans.forEach(span => span.textContent = config.currentBranch.name)
+})('currentBranch')
 
 const createBranchListItem = branchName => {
   const child = document.createElement('li')
@@ -24,7 +29,7 @@ const createBranchListItem = branchName => {
 
     if (branch) {
       branch.checkout()
-      setCurrent(branch)
+      updateBranch(branch)
     }
   })
 
@@ -44,10 +49,10 @@ const addBranch = (branchName) => {
 
   if (branch) {
     branch.checkout()
-    setCurrent(config)(branch)
+    updateBranch(branch)
   } else {
     const branch = g.branch(branchName)
-    setCurrent(config)(branch)
+    updateBranch(branch)
     appendToBranchList('#branch-list')(createBranchListItem(branchName))
   }
 }
