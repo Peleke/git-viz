@@ -9,20 +9,28 @@ const getBranch = graph => branchName =>
 const has = graph => branchName => 
   getBranch(graph)(branchName) != undefined
     
+// @SelfIndulgence
+const thisOrThat = (_this, prop = 'name') => that => 
+  _this
+    ? prop 
+      ? _this[prop] 
+      : _this 
+    : that
+    
+
+
+// App Helpers
 const update = state => (updateEnvironment = () => null) => prop => val => {
   state[prop] = val
   updateEnvironment(val)
 }
 
-// App Helpers
 const updateBranch = update(state)(branch => {
-  const spans = document.querySelectorAll('.current-branch')
-
-  if (state.currentBranch) {
-    spans.forEach(span => span.textContent = state.currentBranch.name)
-  }
-
   branch.checkout()
+
+  document.querySelectorAll('.current-branch')
+    .forEach(
+      span => span.textContent = thisOrThat(state.currentBranch)(span.textContent))
 })('currentBranch')
 
 const createBranchListItem = branchName => {
@@ -41,7 +49,7 @@ const appendToBranchLists = selector => branchName =>
       document.querySelectorAll(selector))
         .forEach(element => element.append(createBranchListItem(branchName)))
   
-// @TODO: Don't assume g as global
+// @TODO: Don't assume g for getbranc
 const addBranch = (branchName) => {
   const branch = getBranch(g)(branchName)
   

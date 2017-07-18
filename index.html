@@ -19,100 +19,111 @@
 
     <hr>
 
-    <canvas id="gitGraph"></canvas>
+    <div class="row">
+      <div class="col-md-12">
+        <canvas id="gitGraph"></canvas>
+      </div>
+    </div>
 
     <br>
     
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>
-          Add Branch
-          <button class="pull-right">
-            <a href="#add-branch-collapse" data-toggle="collapse">
-              <span class="glyphicon glyphicon-chevron-down"></span>
-            </a>
-          </button>
-        </h3>
-      </div>
-      <div id="add-branch-collapse" class="panel-collapse collapse">
-        <div class="panel-body">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="branch-name">Branch Name</label>
-              <input type="text" placeholder="Branch Name" name="branch-name" id="branch-name" class="form-control"></input>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>
+              Add Branch
+              <button class="pull-right">
+                <a href="#add-branch-collapse" data-toggle="collapse">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+              </button>
+            </h3>
+          </div>
+          <div id="add-branch-collapse" class="panel-collapse">
+            <div class="panel-body">
+              <form class="form">
+                <div class="form-group">
+                  <label for="branch-name">Branch Name</label>
+                  <input type="text" placeholder="Branch Name" name="branch-name" id="branch-name" class="form-control"></input>
+                </div>
+                
+                <button id="add-branch" class="btn btn-primary ">Add Branch</button>
+              </form>
             </div>
-            
-            <button id="add-branch" class="btn btn-primary ">Add Branch</button>
-          </form>
+          </div>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>
+              Add Commit
+    
+              <button class="pull-right">
+                <a href="#add-commit-collapse" data-toggle="collapse">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+              </button>
+            </h3>
+          </div>
+          <div id="add-commit-collapse" class="panel-collapse">
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <label for="commit-author">Author</label>
+                  <input type="text" id="commit-author" name="commit-author" class="form-control" placeholder="Linus Torvalds"></input>
+                </div>
+      
+                <div class="form-group">
+                  <label for="commit-message">Commit Message</label>
+                  <textarea rows="4" placeholder=":sparkles: Finally working!" id="commit-message" name="commit-message" class="form-control"></textarea>
+                </div>
+              </form>
+      
+              <button id="add-commit" class="btn btn-primary">Add Commit</button>  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>
+              Merge Branches
+              <button class="pull-right">
+                <a href="#merge-branches-collapse" data-toggle="collapse">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+              </button>
+            </h3>
+          </div>
+          <div id="merge-branches-collapse" class="panel-collapse">
+            <div class="panel-body">
+              <p><b>N.b.</b>: This will merge <span class="code">source</span> _into_ <span class="code">target</span>&mdash;i.e., you will integrate changes into, <span class="code">target</span>, and <span class="code">target</span> will be the working branch after merge.
+    
+              <hr>
+    
+              <form class="form">
+                <div class="form-group">
+                  <label for="merge-source-branch">Source</label>
+                  <select id="merge-source-branch" class="branch-select"><option>[source]</option></select>
+                </div>
+    
+                <div class="form-group">
+                  <label for="merge-source-branch">Target</label>
+                  <select id="merge-target-branch" class="branch-select"><option>[target]</option></select>
+                </div>
+    
+                <button class="btn btn-primary btn-sm" id="merge-branches">Merge</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>
-          Add Commit
-
-          <button class="pull-right">
-            <a href="#add-commit-collapse" data-toggle="collapse">
-              <span class="glyphicon glyphicon-chevron-down"></span>
-            </a>
-          </button>
-        </h3>
-      </div>
-      <div id="add-commit-collapse" class="panel-collapse collapse">
-        <div class="panel-body">
-          <form>
-            <div class="form-group">
-              <label for="commit-author">Author</label>
-              <input type="text" id="commit-author" name="commit-author" class="form-control" placeholder="Linus Torvalds"></input>
-            </div>
-  
-            <div class="form-group">
-              <label for="commit-message">Commit Message</label>
-              <textarea rows="4" placeholder=":sparkles: Finally working!" id="commit-message" name="commit-message" class="form-control"></textarea>
-            </div>
-          </form>
-  
-          <button id="add-commit" class="btn btn-primary">Add Commit</button>  
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>
-          Merge Branches
-          <button class="pull-right">
-            <a href="#merge-branches-collapse" data-toggle="collapse">
-              <span class="glyphicon glyphicon-chevron-down"></span>
-            </a>
-          </button>
-        </h3>
-      </div>
-      <div id="merge-branches-collapse" class="panel-collapse collapse">
-        <div class="panel-body">
-          <p><b>N.b.</b>: This will merge <span class="code">source</span> _into_ <span class="code">target</span>&mdash;i.e., you will integrate changes into, <span class="code">target</span>, and <span class="code">target</span> will be the working branch after merge.
-
-          <hr>
-
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="merge-source-branch">Source</label>
-              <select id="merge-source-branch" class="branch-select"><option>[source]</option></select>
-            </div>
-
-            <div class="form-group">
-              <label for="merge-source-branch">Target</label>
-              <select id="merge-target-branch" class="branch-select"><option>[target]</option></select>
-            </div>
-
-            <button class="btn btn-primary btn-sm" id="merge-branches">Merge</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
     <hr>
     
     <footer style="text-align: center;" class="well">
